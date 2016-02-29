@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Newscoop
 version     : 4.2.4
 release date: Sep 23, 2014
@@ -101,3 +102,6 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 
 [1]: https://github.com/sourcefabric/newscoop-api-php-sdk
 [2]: https://github.com/sourcefabric/newscoop-api-js-sdk
+=======
+# scoops4.2
+>>>>>>> 420df35811348ddc82c32f1959d8f0ac32bd93b4
