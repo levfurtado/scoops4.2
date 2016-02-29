@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.0.9, created on 2016-02-29 13:40:36
+<?php /* Smarty version Smarty-3.0.9, created on 2016-02-29 16:32:16
          compiled from "/var/www/newscoop/themes/system_templates/_events_notifier.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:6197036256d490a413e253-31409824%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:120719059556d4b8e0e17a99-52060484%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '6197036256d490a413e253-31409824',
+  'nocache_hash' => '120719059556d4b8e0e17a99-52060484',
   'function' => 
   array (
   ),
