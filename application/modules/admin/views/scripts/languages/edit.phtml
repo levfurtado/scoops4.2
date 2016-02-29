@@ -1,0 +1,5 @@
+<?php $this->placeholder('title')->set(getGS('Edit language: $1', $this->escape($this->language->getName()))); ?>
+
+<?php $this->renderError(); ?>
+
+<?php echo $this->form->setAction($this->url())->setMethod('post')->render(); ?>

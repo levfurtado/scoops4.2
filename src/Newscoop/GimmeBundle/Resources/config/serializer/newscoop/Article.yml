@@ -1,0 +1,115 @@
+Newscoop\Entity\Article:
+    exclusion_policy: ALL
+    properties:
+        number:
+            expose: true
+            read_only: true
+            type: string
+            groups: ["list", "details"]
+            serialized_name: number
+        name:
+            expose: true
+            read_only: true
+            type: string
+            groups: ["list", "details"]
+            serialized_name: title
+        updated:
+            expose: true
+            read_only: true
+            type: DateTime
+            groups: ["list", "details"]
+            serialized_name: updated
+        type:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            serialized_name: type
+        webcode:
+            expose: true
+            read_only: true
+            type: string
+            groups: ["list", "details"]
+            access_type: public_method
+            serialized_name: webcode
+        keywords:
+            expose: true
+            read_only: true
+            type: string
+            groups: ["list", "details"]
+            access_type: public_method
+            serialized_name: keywords
+        language:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            type: string
+            accessor: 
+                getter: getLanguageCode
+                setter: setLanguageCode
+            serialized_name: language
+        published:
+            expose: true
+            read_only: true
+            type: DateTime
+            groups: ["list", "details"]
+            serialized_name: published
+        articleAuthors:
+            expose: true
+            read_only: true
+            type: author
+            groups: ["list", "details"]
+            serialized_name: authors
+            accessor:
+                getter: getArticleAuthors
+        comments_link:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            type: comments_link
+            serialized_name: comments
+            accessor:
+                getter: getView
+        packages:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            access_type: public_method
+            serialized_name: slideshow
+        topics:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            access_type: public_method
+            serialized_name: topics
+        fields:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            type: article_fields
+            serialized_name: fields
+            accessor:
+                getter: getView
+        translations:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            type: article_translations
+            access_type: public_method
+            serialized_name: translations
+            accessor:
+                getter: getView
+        renditions:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            type: article_renditions
+            access_type: public_method
+            serialized_name: renditions
+            accessor:
+                getter: getView
+        reads:
+            expose: true
+            read_only: true
+            groups: ["list", "details"]
+            access_type: public_method
+            serialized_name: reads

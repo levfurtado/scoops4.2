@@ -1,0 +1,12 @@
+@media print {
+	body {margin: 20px;}
+
+	* {
+		color: $black !important;
+		background: $white !important;
+		margin-left: 0 !important;
+		clear: both !important;
+	}
+
+	
+}

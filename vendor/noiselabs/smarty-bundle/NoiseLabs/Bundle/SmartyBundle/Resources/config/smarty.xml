@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="smarty.class">Smarty</parameter>
+        <parameter key="templating.engine.smarty.class">NoiseLabs\Bundle\SmartyBundle\SmartyEngine</parameter>
+        <parameter key="smarty.class_file">Smarty.class.php</parameter>
+        <parameter key="smarty.extension.core.class">NoiseLabs\Bundle\SmartyBundle\Extension\CoreExtension</parameter>
+        <parameter key="smarty.extension.actions.class">NoiseLabs\Bundle\SmartyBundle\Extension\ActionsExtension</parameter>
+        <parameter key="smarty.extension.assets.class">NoiseLabs\Bundle\SmartyBundle\Extension\AssetsExtension</parameter>
+        <parameter key="smarty.extension.routing.class">NoiseLabs\Bundle\SmartyBundle\Extension\RoutingExtension</parameter>
+        <parameter key="smarty.extension.security.class">NoiseLabs\Bundle\SmartyBundle\Extension\SecurityExtension</parameter>
+        <parameter key="smarty.extension.trans.class">NoiseLabs\Bundle\SmartyBundle\Extension\TranslationExtension</parameter>
+        <parameter key="smarty.templating.finder.class">NoiseLabs\Bundle\SmartyBundle\CacheWarmer\SmartyTemplateFinder</parameter>
+        <parameter key="smarty.cache_warmer.class">NoiseLabs\Bundle\SmartyBundle\CacheWarmer\SmartyCacheWarmer</parameter>
+    </parameters>
+
+    <services>
+        <service id="smarty" class="%smarty.class%"></service>
+
+        <service id="templating.engine.smarty" class="%templating.engine.smarty.class%" public="true">
+            <argument type="service" id="smarty"/>
+            <argument type="service" id="service_container" />
+            <argument type="service" id="templating.name_parser"/>
+            <argument type="service" id="templating.loader" />
+            <argument>%smarty.options%</argument>
+            <argument type="service" id="templating.globals" on-invalid="null" />
+            <argument type="service" id="logger" on-invalid="null" />
+            <tag name="templating.engine" />
+            <tag name="monolog.logger" channel="SmartyBundle" />
+        </service>
+
+        <service id="smarty.extension.core" class="%smarty.extension.core.class%" public="false">
+            <tag name="smarty.extension" />
+        </service>
+
+        <service id="smarty.extension.actions" class="%smarty.extension.actions.class%" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="smarty.extension.assets" class="%smarty.extension.assets.class%" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="smarty.extension.routing" class="%smarty.extension.routing.class%" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="router" />
+        </service>
+
+        <service id="smarty.extension.trans" class="%smarty.extension.trans.class%" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="translator" />
+        </service>
+
+        <service id="smarty.extension.security" class="%smarty.extension.security.class%" public="false">
+            <tag name="smarty.extension" />
+            <argument type="service" id="security.context" on-invalid="ignore" />
+        </service>
+
+        <service id="smarty_engine" alias="templating.engine.smarty" />
+        <service id="smarty.engine" alias="templating.engine.smarty" />
+
+        <service id="smarty.templating.finder" class="%smarty.templating.finder.class%" public="true">
+            <argument type="service" id="kernel" />
+            <argument type="service" id="templating.filename_parser" />
+            <argument>%kernel.root_dir%/Resources</argument>
+        </service>
+
+        <!--service id="smarty.cache_warmer" class="%smarty.cache_warmer.class%" public="false">
+            <tag name="kernel.cache_warmer" priority="255" />
+            <argument type="service" id="service_container" />
+            <argument type="service" id="smarty.templating.finder" />
+        </service-->
+
+    </services>
+</container>

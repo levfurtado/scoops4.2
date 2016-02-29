@@ -1,0 +1,12 @@
+* * * * * /var/www/newscoop/bin/newscoop-autopublish
+
+0 */4 * * * /var/www/newscoop/bin/newscoop-indexer --silent
+
+0 */8 * * * /var/www/newscoop/bin/subscription-notifier
+
+*/2 * * * * /var/www/newscoop/bin/events-notifier
+
+0 */4 * * * /var/www/newscoop/bin/newscoop-statistics
+
+0 5 * * * /var/www/newscoop/bin/newscoop-stats
+

@@ -1,0 +1,67 @@
+.form,
+.form-register form,
+.form-user form {
+	label {
+		display: block;
+		float: left;
+		margin: 0 1em 2em 0;
+		@include font-size(16);
+		width: 30%;
+		clear: both;
+	}
+	input {
+		margin: 0 0 1.4em 0;
+	}
+}
+
+.form-register #email,
+.site-pw #email {
+	max-width: 100%;
+	width: 60%;
+}
+
+.form-register #terms_of_use {
+	margin: 13px 0 0 0;
+}
+
+#image {max-width: 60%;}
+
+#attributes-gender-element {
+	float: left; 
+	width: 50%;
+	margin: 0 0 2em 0;
+	label {margin: 0;}
+	input {margin: 0 0.3em 0 0;}
+}
+
+.form-user {
+	border: 1px solid $l-grey;
+	padding: 0 0.4em;
+	margin: 0 0 2em 0;
+	fieldset {
+		padding: 0;
+		border: none;
+		margin: 0;
+	}
+	dd {margin: 0}
+	form input {margin: 0 0 2em 0;}
+	textarea {
+		width: 60%;
+		height: 120px;
+		margin: 0 0 2em 0;
+	}
+	input[type="checkbox"] {
+		transform: scale(1.3);
+		float: left;
+		margin: 0 0 2.5em 0;
+	}
+}
+
+.site-pw .button {
+	max-width: 100%;
+}
+
+#newsletter-label,
+#newsletter-element,
+#attributes-email_public-label,
+#attributes-email_public-element {display: none}

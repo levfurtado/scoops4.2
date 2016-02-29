@@ -1,0 +1,47 @@
+.poll-option {
+	padding: 0 0 1em 0;
+	label {
+		@include font-size(16);
+	}
+	input {
+		float: left;
+		margin: 0.3em 0.5em 0 0;
+		display: block;
+		border: none;
+	}
+}
+
+.poll-progress {
+	width: 100%;
+	height: 1em;
+	background: lighten($l-green, 10);
+	.bar {
+		height: 1em;
+		background: darken($d-green, 10);
+		margin: 0 0 0.5em 0
+	}
+}
+
+.poll-button {
+	display: block;
+}
+
+.poll-score {
+	@include font-size(14);
+	float: right;
+	display: block;
+}
+
+.vote-box-poll input,
+.vote-box-poll label {
+	display: none;
+}
+
+.poll-button-debate {
+	display: block;
+	background: $d-green;
+	color: $white;
+	float: left;
+	padding: 5px 10px;
+	margin: 0 20px 0 0;
+}

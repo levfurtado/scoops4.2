@@ -1,0 +1,27 @@
+<?php $this->placeholder('title')->set(getGS("Edit user '$1'", $this->user->getUsername())); ?>
+
+<?php $this->renderActions(); ?>
+
+<?php if ($this->user->isPublic()) { ?>
+<div class="edit-image">
+    <a href="<?php echo $this->url(array(
+        'module' => 'admin',
+        'controller' => 'user',
+        'action' => 'profile',
+    )); ?>" class="iframe"><img src="<?php echo $this->url(array('src' => $this->image), 'image', false, false) ?: $this->baseUrl('admin-style/NoPicture.gif'); ?>" width="80" height="80" /><br /><?php putGS('Edit profile'); ?></a>
+</div>
+<?php } ?>
+
+<?php echo $this->form->setAttrib('id', 'edit-form'); ?>
+
+<script>
+$('.content a.iframe').fancybox({
+    hideOnContentClick: false,
+    width: 900,
+    height: 600
+});
+
+$('#edit-form').submit(function() {
+    $('#save_button').attr('disabled', 'disabled');
+});
+</script>

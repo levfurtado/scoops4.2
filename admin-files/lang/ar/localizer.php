@@ -1,0 +1,34 @@
+<?php 
+regGS("Help", "المساعدة");
+regGS("Support", "الدعم");
+regGS("Themes", "النُسق");
+regGS("Area to localize", "منطقة  للترجمة");
+regGS("Dashboard", "اللوحة الرئيسية ");
+regGS("Authors", "المؤلفون");
+regGS("Libraries", "المكتبات");
+regGS("Media Archive", "أرشيف إعلامي");
+regGS("Extensions", "امتدادات");
+regGS("Geo-location", "الموقع الجغرافي");
+regGS("Translation status:", "حالة الترجمة:");
+regGS("Editor Media Plugin", "ملحق المحرر الإعلامي");
+regGS("$1 of $2 strings translated", "تم الترجمة $1 من $2 سلسلات الرموز");
+regGS("Preview Window", "نافذة المعاينة");
+regGS("Show translated strings", "أظهر سلسلات الرموز المترجمة");
+regGS("Hide translated strings", "أخف سلسلات الرموز المترجمة");
+regGS("Feedback", "التغذية المرتدة");
+regGS("You do not have the right to manage the localizer.", "ليس لديك الحق في إدارة المترجم .");
+regGS("API", "واجهة برمجة التطبيقات");
+regGS("User Subscriptions Sections", "أقسام إشتراكات المستخدم");
+regGS("User Subscriptions", "إشتراكات المستخدم");
+regGS("Translate to:", "ترجم إلى:");
+regGS("Translate from:", "ترجم من:");
+regGS("The following strings are not used:", "سلسلات الرموز التالية غير مستخدمة:");
+regGS("The following strings are missing from the translation files:", "سلسلات الرموز التالية مفقودة من ملفات الترجمة:");
+regGS("No source strings found.", "لم يتم العثور على سلسلات مصدر");
+regGS("No matches found.", "لم يتم العثور على نتائج");
+regGS("Globals", "العالميون");
+regGS("Are you sure you want to delete this entry?", "هل أنت متأكد أنك تريد حذف هذا الإدخال؟");
+regGS("All strings have been translated.", "تم ترجمة جميع السلسلات.");
+regGS("Bug Reporting", "تقارير العلل");
+regGS("Article Topics", "موضوعات المقالات");
+?>

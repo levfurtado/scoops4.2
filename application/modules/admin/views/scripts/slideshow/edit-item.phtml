@@ -1,0 +1,75 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl('/admin-style/image_management.css')); ?>
+<?php $this->placeholder('bodyId')->set('next'); $this->placeholder('bodyClass')->set('dark'); ?>
+<?php
+    // Load tinymce for richtext editor
+    require_once($GLOBALS['g_campsiteDir']."/admin-files/media-archive/editor_load_tinymce.php");
+
+    $richtextCaption = SystemPref::Get("MediaRichTextCaptions");
+    $captionLimit = SystemPref::Get('MediaCaptionLength');
+?>
+<h1><?php putGS('Slideshow'); ?> <small id="slideshow-rendition-info"><?php echo $this->package->getRendition()->getInfo(); ?></small></h1>
+<form id="edit-form" method="<?php echo $this->form->getMethod(); ?>" onSubmit="<?php
+    if ($richtextCaption == 'Y') {
+        echo 'return validateTinyMCEEditors();';
+    }
+?>">
+
+<div class="editarea">
+    <div>
+        <?php if ($this->item->isVideo()) { ?>
+        <h2>Video: <?php echo $this->item->getVideoUrl(); ?></h2>
+        <?php } ?>
+        <?php echo $this->item->isImage() ? $this->imageEditor($this->rendition, $this->image) : $this->videoPreview($this->item->getVideoUrl(), $this->rendition->getWidth(), $this->rendition->getHeight()); ?>
+        <?php if ($this->item->isVideo()) { ?>
+        <input type="text" name="url" value="<?php echo $this->escape($this->form->url->getValue()); ?>" />
+        <?php } ?>
+        <?php
+            if ($richtextCaption == 'Y') {
+
+                $languageSelectedObj = new Language((int) camp_session_get('LoginLanguageId', 0));
+                $editorLanguage = !empty($_COOKIE['TOL_Language']) ? $_COOKIE['TOL_Language'] : $languageSelectedObj->getCode();
+                $editorOptions  = array(
+                    'max_chars' => $captionLimit,
+                    'toolbar_length' => 45,
+                );
+
+                editor_load_tinymce('caption', $this->currentUser, $editorLanguage, $editorOptions);
+                ?>
+                    <textarea name="caption" rows="5" class="image-description"><?php echo $this->form->caption->getValue(); ?></textarea>
+                <?php
+            } else {
+                ?>
+                    <input type="text" name="caption" value="<?php echo $this->escape($this->form->caption->getValue()); ?>" placeholder="<?php putGS('Add caption'); ?>" maxlength="<?php $captionLimit; ?>" /><br />
+                <?php
+            }
+        ?>
+        <button class="save-button"><?php putGS('Save'); ?></button>
+    </div>
+
+    <?php if (($prev = $this->package->getPrev($this->item)) !== null) { ?>
+    <a href="<?php echo $this->url(array(
+        'item' => $this->package->getPrev($this->item)->getId(),
+    )); ?>" class="prev"><span></span><?php putGS('Previous'); ?></a>
+    <?php } ?>
+
+    <?php if (($next = $this->package->getNext($this->item)) !== null) { ?>
+    <a href="<?php echo $this->url(array(
+        'item' => $next->getId(),
+    )); ?>" class="next"><span></span><?php putGS('Next'); ?></a>
+    <?php } ?>
+
+    <a href="<?php echo $this->url(array(
+        'action' => 'edit',
+        'item' => null,
+        'format' => null
+    )); ?>" class="done button"><?php putGS('Done editing'); ?></a>
+</div>
+
+</form>
+
+<?php $this->currentItem = $this->item; ?>
+<ul class="slideshow editor">
+    <?php foreach ($this->item->getPackageItems() as $item) { ?>
+    <?php echo $this->slideshowItem($item, $this->currentItem); ?>
+    <?php } ?>
+</ul>

@@ -1,0 +1,74 @@
+services:
+    newscoop.paginator.pagination_listener:
+        class: Newscoop\GimmeBundle\EventListener\PaginationListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onRequest, priority: 31 }
+        arguments:  ["@newscoop.paginator.paginator_service"]
+    newscoop.paginator.paginator_service:
+        class: Newscoop\Gimme\PaginatorService
+        arguments:  ["@knp_paginator", "@router"]
+    newscoop.paginator.query_subscriber:
+        class: Newscoop\GimmeBundle\EventListener\QuerySubscriber
+        arguments:  ["@newscoop.paginator.paginator_service"]
+        tags:
+            - { name: kernel.event_subscriber}
+    newscoop.paginator.pagination_extra_data_subscriber:
+        class: Newscoop\GimmeBundle\EventListener\PaginationExtraDataSubscriber
+        arguments:  ["@newscoop.paginator.paginator_service"]
+        tags:
+            - { name: kernel.event_subscriber}
+    newscoop.publication_service:
+        class: Newscoop\Gimme\PublicationService
+        arguments:  ["@em"]
+    newscoop.gimme.listener.publication:
+        class: Newscoop\GimmeBundle\EventListener\PublicationListener
+        arguments:  ["@newscoop.publication_service"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onRequest }
+    newscoop.gimme.listener.format_json:
+        class: Newscoop\GimmeBundle\EventListener\FormatJsonResponseListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onResponse }
+    newscoop.gimme.listener.allow_origin:
+        class: Newscoop\GimmeBundle\EventListener\AllowOriginListener
+        arguments:  ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onResponse }
+    newscoop.gimme.listener.override_method:
+        class: Newscoop\GimmeBundle\EventListener\OverrideMethodListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onRequest, priority: 34 }
+    newscoop.gimme.serializer.article_author_handler:
+        class: Newscoop\GimmeBundle\Serializer\Article\AuthorHandler
+        arguments: ["@router"]
+        tags:
+            - { name: jms_serializer.handler, type: author, direction: serialization, format:json, method:serializeToJson }
+    newscoop.gimme.serializer.author_image_uri_handler:
+        class: Newscoop\GimmeBundle\Serializer\Author\ImageUriHandler
+        arguments:  ["@image", "@zend_router", "@newscoop.publication_service"]
+        tags:
+            - { name: jms_serializer.handler, type: image_uri, direction: serialization, format:json, method:serializeToJson }
+    newscoop.gimme.serializer.package_items_link_handler:
+        class: Newscoop\GimmeBundle\Serializer\Package\ItemsLinkHandler
+        arguments:  ["@router"]
+        tags:
+            - { name: jms_serializer.handler, type: items_link, direction: serialization, format:json, method:serializeToJson }
+    newscoop.gimme.serializer.article_fields_handler:
+        class: Newscoop\GimmeBundle\Serializer\Article\FieldsHandler
+        tags:
+            - { name: jms_serializer.handler, type: article_fields, direction: serialization, format:json, method:serializeToJson }
+    newscoop.gimme.serializer.article_translations_handler:
+        class: Newscoop\GimmeBundle\Serializer\Article\TranslationsHandler
+        arguments:  ["@em", "@router"]
+        tags:
+            - { name: jms_serializer.handler, type: article_translations, direction: serialization, format:json, method:serializeToJson }
+    newscoop.gimme.serializer.article_renditions_handler:
+        class: Newscoop\GimmeBundle\Serializer\Article\RenditionsHandler
+        arguments:  ["@image", "@zend_router", "@newscoop.publication_service", "@image.rendition"]
+        tags:
+            - { name: jms_serializer.handler, type: article_renditions, direction: serialization, format:json, method:serializeToJson }
+    newscoop.gimme.serializer.article_comments_link_handler:
+        class: Newscoop\GimmeBundle\Serializer\Article\CommentsLinkHandler
+        arguments:  ["@router"]
+        tags:
+            - { name: jms_serializer.handler, type: comments_link, direction: serialization, format:json, method:serializeToJson }

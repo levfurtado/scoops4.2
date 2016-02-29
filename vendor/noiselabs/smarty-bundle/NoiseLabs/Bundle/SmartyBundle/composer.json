@@ -1,0 +1,49 @@
+{
+    "name": "noiselabs/smarty-bundle",
+    "type": "symfony-bundle",
+    "description": "This Symfony2 bundle provides integration for the Smarty3 template engine.",
+    "keywords": ["templating", "smarty", "symfony", "noiselabs"],
+    "homepage": "http://smartybundle.noiselabs.org",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Vítor Brandão",
+            "email": "vitor@noiselabs.org",
+            "homepage": "http://blog.noiselabs.org"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/noiselabs/SmartyBundle/contributors"
+        }
+    ],
+    "support": {
+        "irc": "irc://irc.freenode.org/noiselabs",
+        "issues": "https://github.com/noiselabs/SmartyBundle/issues"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": ">=2.1.0"
+    },
+    "require-dev": {
+        "symfony/security": ">=2.1.0",
+        "symfony/yaml": ">=2.1.0",
+        "symfony/assetic-bundle": ">=2.0"
+    },
+    "suggest": {
+        "symfony/assetic-bundle": "Assetic support in Smarty templates",
+        "mopa/bootstrap-bundle": "Integration of Twitter Bootstrap into Symfony2",
+        "mopa/bootstrap-sandbox-bundle": "Integration of Twitter Bootstrap into Symfony2 (extra)",
+        "liip/theme-bundle": "Integration of Twitter Bootstrap into Symfony2 (themes)",
+        "knplabs/knp-menu-bundle": "Smarty3 integration with KnpMenu (object oriented menus)"
+    },
+    "autoload": {
+        "psr-0": { "NoiseLabs\\Bundle\\SmartyBundle": "" }
+    },
+    "target-dir": "NoiseLabs/Bundle/SmartyBundle",
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2.x-dev"
+        }
+    }
+}

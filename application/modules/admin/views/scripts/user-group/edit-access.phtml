@@ -1,0 +1,10 @@
+<?php $this->placeholder('title')->captureStart(); ?>
+<?php echo getGS('Permissions:'); ?>
+<form action="<?php echo $this->url(array(
+    'action' => 'edit',
+)); ?>" method="POST">
+<dl class="zend_form inline">
+    <?php echo $this->form->name; ?> <?php echo $this->form->submit; ?>
+</dl>
+</form>
+<?php $this->placeholder('title')->captureEnd(); ?>
